@@ -2,11 +2,15 @@ const refs = {
     fontControl: document.querySelector('#font-size-control'),
     resizedText: document.querySelector('#text'),
 };
+// Вариант - "присвойте тексту первоначальное значение(value) инпута"
+refs.resizedText.style.fontSize = `${refs.fontControl.value}px`
+
+refs.fontControl.addEventListener('input', () => refs.resizedText.style.fontSize = `${refs.fontControl.value}px`);
 
 // Вариант получения числового значения размера шрифта без промежуточных переменных и все одной строкой - немного извращение, но класно!
-const earlyNumberFontSize = getComputedStyle(refs.resizedText).fontSize.match(/\d+/);
+/* const earlyNumberFontSize = getComputedStyle(refs.resizedText).fontSize.match(/\d+/);
 
-refs.fontControl.addEventListener('input', () => refs.resizedText.style.fontSize = `${(refs.fontControl.value / 50) * earlyNumberFontSize}px`);
+refs.fontControl.addEventListener('input', () => refs.resizedText.style.fontSize = `${(refs.fontControl.value / 50) * earlyNumberFontSize}px`); */
 
 // Вариант - классика
 /* const earlyFontSize = getComputedStyle(refs.resizedText).fontSize; //начальный размер шрифта, строка

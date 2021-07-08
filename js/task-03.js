@@ -14,11 +14,28 @@ const images = [
 ];
 
 const galleryEl = document.querySelector('#gallery');
-galleryEl.style.listStyle = 'none';
-galleryEl.style.display = 'flex';
-// galleryEl.style.cssText = 'list-style:none;display:flex;';
+// galleryEl.style.listStyle = 'none';
+// galleryEl.style.display = 'flex';
+galleryEl.style.cssText = 'list-style:none;display:flex;';
 
-const galleryItems = images.map(image => {
+//Вариант - одной вставкой
+/* let galleryArray = images.map(image => `<li style="margin-left:30px"><img src="${image.url}" alt="${image.alt}" width="250"></li>`);
+galleryEl.insertAdjacentHTML('afterbegin', galleryArray.join('')); */
+
+//Вариант - одной вставкой, одной строкой, ипользуя методы .map и .join
+/* galleryEl.insertAdjacentHTML('afterbegin', images.map(image => `<li style="margin-left:30px"><img src="${image.url}" alt="${image.alt}" width="250"></li>`).join('')); */
+
+//Вариант - одной вставкой, одной строкой, ипользуя только метод .reduce
+galleryEl.insertAdjacentHTML('afterbegin', images.reduce((textHtml, current) => textHtml + `<li style="margin-left:30px"><img src="${current.url}" alt="${current.alt}" width="250"></li>`, ''));
+
+
+// Вариант - несколько вставок
+/* images.forEach(image => {
+  galleryEl.insertAdjacentHTML('beforeend', `<li style="margin-left:30px"><img src="${image.url}" alt="${image.alt}" width="250"></li>`);
+}); */
+
+//
+/* const galleryItems = images.map(image => {
   const galleryItemEl = document.createElement('li');
   
   const imageEl = document.createElement('img');
@@ -33,4 +50,10 @@ const galleryItems = images.map(image => {
   return galleryItemEl;
 });
 
-galleryEl.append(...galleryItems);
+galleryEl.append(...galleryItems); */
+
+
+
+
+
+
